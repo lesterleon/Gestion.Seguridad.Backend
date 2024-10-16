@@ -36,7 +36,6 @@ namespace Gestion.Seguridad.Backend.Infrastructure.Persistence.Repositories
                 parameters.Add("@Apellidos", entity.Apellidos, DbType.String, size: 100, direction: ParameterDirection.Input);
                 parameters.Add("@DNI", entity.DNI, DbType.String, size: 20, direction: ParameterDirection.Input);
                 parameters.Add("@Email", entity.Email, DbType.String, size: 100, direction: ParameterDirection.Input);
-                parameters.Add("@Clave", entity.Clave, DbType.String, size: 100, direction: ParameterDirection.Input);
                 parameters.Add("@Direccion", entity.Direccion, DbType.String, size: 200, direction: ParameterDirection.Input);
                 await connection.ExecuteAsync("usp_Actualizar_Usuario", parameters, commandType: CommandType.StoredProcedure);
                 return true;
@@ -76,9 +75,11 @@ namespace Gestion.Seguridad.Backend.Infrastructure.Persistence.Repositories
 
         public async Task<Usuario?> ObtenerAsync(int id)
         {
+            var parameters = new DynamicParameters();
+            parameters.Add("@Id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             using (var connection = SqlServerDatabase.CreateSqlServerConnection())
             {
-                return await connection.QueryFirstOrDefaultAsync<Usuario>("usp_Obtener_Usuario", commandType: CommandType.StoredProcedure);
+                return await connection.QueryFirstOrDefaultAsync<Usuario>("usp_Obtener_Usuario", parameters, commandType: CommandType.StoredProcedure);
             }
         }
     }

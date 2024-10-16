@@ -1,12 +1,14 @@
 ﻿using FluentValidation;
 using Gestion.Seguridad.Backend.Application.Services.Interfaces;
 using Gestion.Seguridad.Backend.Domain.DTOs.Usuario;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gestion.Seguridad.Backend.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;

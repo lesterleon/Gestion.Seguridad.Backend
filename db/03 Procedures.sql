@@ -53,7 +53,7 @@ CREATE PROCEDURE usp_Insertar_Usuario
     @Email NVARCHAR(100),
     @Clave NVARCHAR(100),
     @Direccion NVARCHAR(200) = NULL,
-    @IdUsuario INT OUTPUT
+    @Id INT OUTPUT
 AS
 BEGIN
     INSERT INTO Usuario (Nombres, Apellidos, DNI, Email, Clave, Direccion, Eliminado)

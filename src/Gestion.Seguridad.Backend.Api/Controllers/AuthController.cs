@@ -2,12 +2,14 @@
 using Gestion.Seguridad.Backend.Application.Services.Interfaces;
 using Gestion.Seguridad.Backend.Domain.DTOs.Usuario;
 using Gestion.Seguridad.Backend.Domain.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gestion.Seguridad.Backend.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
